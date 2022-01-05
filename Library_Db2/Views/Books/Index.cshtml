@@ -4,17 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Book list</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-warning"> <i class="bi bi-plus-circle"></i> &nbsp; Create New Book</a>
+        </div>
+    </div>
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default"/> |
+            <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-action="Index">Back to Full List</a>
         </p>
     </div>
@@ -51,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.Price) $
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pages)
@@ -60,11 +64,12 @@
                 @Html.DisplayFor(modelItem => item.Authors.AuthorName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-success"><i class="bi bi-pencil-square"></i> &nbsp; Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-primary" ><i class="bi bi-info-square"></i> &nbsp; Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger"><i class="bi bi-trash"></i> &nbsp; Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>

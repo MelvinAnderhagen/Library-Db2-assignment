@@ -60,6 +60,7 @@ namespace Library_Db2.Controllers
             {
                 _context.Add(authors);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Author Successfully Created";
                 return RedirectToAction(nameof(Index));
             }
             return View(authors);
@@ -111,6 +112,7 @@ namespace Library_Db2.Controllers
                         throw;
                     }
                 }
+                TempData["success"] = "Author Updated Successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(authors);
@@ -142,6 +144,7 @@ namespace Library_Db2.Controllers
             var authors = await _context.authors.FindAsync(id);
             _context.authors.Remove(authors);
             await _context.SaveChangesAsync();
+            TempData["success"] = "Author Successfully Deleted";
             return RedirectToAction(nameof(Index));
         }
 

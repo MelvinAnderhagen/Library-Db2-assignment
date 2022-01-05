@@ -114,9 +114,11 @@ namespace Library_Db2.Controllers
             {
                 _context.Add(books);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Book Successfully Created";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuthorId"] = new SelectList(_context.authors, "AuthorId", "AuthorName", books.AuthorId);
+            
             return View(books);
         }
 
@@ -167,6 +169,7 @@ namespace Library_Db2.Controllers
                         throw;
                     }
                 }
+                TempData["success"] = "Book Updated Successfully";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuthorId"] = new SelectList(_context.authors, "AuthorId", "AuthorName", books.AuthorId);
@@ -200,6 +203,7 @@ namespace Library_Db2.Controllers
             var books = await _context.books.FindAsync(id);
             _context.books.Remove(books);
             await _context.SaveChangesAsync();
+            TempData["success"] = "Book Successfully Created";
             return RedirectToAction(nameof(Index));
         }
 
